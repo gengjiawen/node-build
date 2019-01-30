@@ -3,6 +3,7 @@ FROM ubuntu
 RUN apt-get update && \
     apt-get install --yes \
         build-essential \
+        git \
         curl \
         cmake \
         clang \

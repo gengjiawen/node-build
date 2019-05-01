@@ -1,0 +1,10 @@
+FROM gengjiawen:node-build
+
+RUN cd ~ && git clone https://github.com/nodejs/node && \
+        cd ~/node && \
+        node-cmake-generator && \
+        git checkout Makefile && \
+        cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+
+WORKDIR /root/node
+

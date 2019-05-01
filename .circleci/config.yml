@@ -23,6 +23,10 @@ jobs:
 
 workflows:
   version: 2
-  perfs:
+  build:
     jobs:
       - test
+  nightly:
+    triggers:
+      - schedule:
+          cron: "0 0 * * *"

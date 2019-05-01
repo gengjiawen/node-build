@@ -9,7 +9,7 @@ jobs:
           name: Build Docker Image
           command: |
             docker build -t gengjiawen/node-build .
-            docker build -t gengjiawen/node-build:excited-s Dockerfile.source
+            docker build -t gengjiawen/node-build:excited-s -f Dockerfile.source .
       - run:
           name: Docker Info
           command: |

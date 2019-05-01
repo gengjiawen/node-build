@@ -1,4 +1,4 @@
-FROM gengjiawen:node-build
+FROM gengjiawen/node-build
 
 RUN cd ~ && git clone https://github.com/nodejs/node && \
         cd ~/node && \

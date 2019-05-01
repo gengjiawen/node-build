@@ -6,13 +6,20 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Build docker image
+          name: Build Docker Image
           command: |
             docker build -t gengjiawen/node-build .
+            docker build -t gengjiawen/node-build:excited-s Dockerfile.source
       - run:
-          name: Docker info
+          name: Docker Info
           command: |
             docker run --rm --name lo gengjiawen/node-build bash -c "npm i -g envinfo && envinfo"
+      - run:
+          name: Push
+          command: |
+            docker login -u $DOCKER_USER -p $DOCKER_PASS
+            docker push gengjiawen/node-build
+            docker push gengjiawen/node-build:excited-s
 
 workflows:
   version: 2

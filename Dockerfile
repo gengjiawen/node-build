@@ -14,6 +14,9 @@ RUN apt update && \
         python3 \
         python3-pip \
         python \
+        graphviz \
+        p7zip-full \
+        doxygen \
         r-base \
         fish \
         time \

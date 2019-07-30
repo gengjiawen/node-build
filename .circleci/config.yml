@@ -13,7 +13,7 @@ jobs:
       - run:
           name: Docker Info
           command: |
-            docker run --rm --name lo gengjiawen/node-build bash -c "npm i -g envinfo && envinfo"
+            docker run --rm --name lo gengjiawen/node-build bash -c "npx envinfo"
       - run:
           name: Push
           command: |
@@ -34,7 +34,7 @@ workflows:
       - test
     triggers:
       - schedule:
-          cron: "0 0 * * *"
+          cron: "0 0 * * 0"
           filters:
             branches:
               only:

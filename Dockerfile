@@ -10,6 +10,7 @@ RUN apt update && \
         clang \
         clang-format \
         clang-tidy \
+        cmake \
         clang-tools \
         python3 \
         python3-pip \
@@ -21,11 +22,6 @@ RUN apt update && \
         fish \
         time \
         vim
-
-RUN curl -sS https://cmake.org/files/v3.10/cmake-3.10.2-Linux-x86_64.sh -o /install_cmake.sh && \
-    mkdir /opt/cmake && \
-    sh /install_cmake.sh --prefix=/opt/cmake --skip-license && \
-    ln -s /opt/cmake/bin/cmake /usr/local/bin/cmake
 
 RUN apt-get install -y npm && \
       npm i -g n && \

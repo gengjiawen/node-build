@@ -1,6 +1,6 @@
 FROM gengjiawen/node-build
 
-RUN cd ~ && git clone https://github.com/nodejs/node && \
+RUN cd ~ && git clone https://github.com/nodejs/node --depth=10 && \
         cd ~/node && \
         node-cmake-generator && \
         git checkout Makefile && \

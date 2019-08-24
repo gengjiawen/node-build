@@ -36,3 +36,5 @@ RUN apt-get install -y npm && \
 
 #For clang-tidy
 RUN pip3 install pyyaml
+
+CMD [ "fish" ]

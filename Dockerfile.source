@@ -4,7 +4,7 @@ RUN cd ~ && git clone https://github.com/nodejs/node --depth=10 && \
         cd ~/node && \
         node-cmake-generator && \
         git checkout Makefile && \
-        cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+        cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON || true
 
 WORKDIR /root/node
 

@@ -10,7 +10,6 @@ RUN apt update && \
         clang \
         clang-format \
         clang-tidy \
-        cmake \
         clang-tools \
         python3 \
         python3-pip \
@@ -30,7 +29,7 @@ RUN apt-get install -y npm && \
       yarn global add node-cmake-generator && \
       npx envinfo
 
-#For clang-tidy
-RUN pip3 install pyyaml
+#For clang-tidy and cmake
+RUN pip3 install -U pip && pip3 install pyyaml && pip3 install cmake
 
 CMD [ "fish" ]

@@ -30,6 +30,6 @@ RUN apt-get install -y npm && \
       npx envinfo
 
 #For clang-tidy and cmake
-RUN python3 -m pip3 install -U pip && pip3 install pyyaml && pip3 install cmake
+RUN python3 -m pip install -U pip && pip3 install pyyaml && pip3 install cmake
 
 CMD [ "fish" ]

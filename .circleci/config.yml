@@ -29,7 +29,7 @@ workflows:
   build:
     jobs:
       - test
-  nightly:
+  weekly:
     jobs:
       - test
     triggers:

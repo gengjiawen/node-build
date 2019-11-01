@@ -11,6 +11,7 @@ RUN apt update && \
         clang-format \
         clang-tidy \
         clang-tools \
+        ninja-build \
         python3 \
         python3-pip \
         python \

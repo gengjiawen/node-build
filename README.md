@@ -8,3 +8,8 @@ build
 ```bash
 docker run --rm --name build-node -v $PWD:/pwd -w /pwd gengjiawen/node-build bash -c "./configure && make -j4"
 ```
+
+remote debug in CLion
+```bash
+docker run -d --cap-add sys_ptrace -p2222:22 --name clion_remote_env gengjiawen/node-build:remote
+```

@@ -23,14 +23,15 @@ RUN apt update && \
         time \
         vim
 
+#For clang-tidy and cmake
+RUN python3 -m pip install -U pip && pip3 install pyyaml && pip3 install cmake
+
+
 RUN apt-get install -y npm && \
       npm i -g n && \
       npm i -g yarn && \
       n latest && \
       yarn global add node-cmake-generator && \
       npx envinfo
-
-#For clang-tidy and cmake
-RUN python3 -m pip install -U pip && pip3 install pyyaml && pip3 install cmake
 
 CMD [ "fish" ]

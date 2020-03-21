@@ -12,6 +12,7 @@ jobs:
             npx envinfo
             docker build -t gengjiawen/node-build .
             docker build -t gengjiawen/node-build:excited-s -f Dockerfile.source .
+            docker build -t gengjiawen/node-build:source -f Dockerfile.source .
             docker build -t gengjiawen/node-build:remote -f Dockerfile.remote .
       - run:
           name: Docker Info
@@ -24,6 +25,7 @@ jobs:
             docker push gengjiawen/node-build
             docker push gengjiawen/node-build:remote
             docker push gengjiawen/node-build:excited-s
+            docker push gengjiawen/node-build:source
             docker run --rm --name build-node -v $PWD:/pwd -w /pwd gengjiawen/node-build:excited-s bash -c "cp ~/node/CMakeLists.txt /pwd"
       - store_artifacts:
           path: ~/project/CMakeLists.txt

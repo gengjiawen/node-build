@@ -1,0 +1,67 @@
+{
+  "name": "@gengjiawen/node-dev",
+  "version": "0.0.1",
+  "description": "yahaha",
+  "repository": {
+    "url": "/node-debug",
+    "type": "git"
+  },
+  "author": "gengjiawen <technicalcute@gmail.com> (github.com/gengjiawen)",
+  "scripts": {
+    "start": "tsc -w",
+    "server": "ts-node-dev --respawn libs/index.ts",
+    "clean": "rimraf build",
+    "format": "prettier --write \"{examples,libs,script,test}/**/*.ts\" \"*.ts\" \"*.yml\"",
+    "format:check": "prettier --list-different \"{examples,libs,script,test}/**/*.ts\" \"*.ts\" \"*.yml\"",
+    "test": "jest",
+    "build": "npm run clean && tsc -p ./tsconfig.json"
+  },
+  "bin": {
+    "node-dev": "bin/node-dev.js"
+  },
+  "dependencies": {
+    "commander": "^5.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@types/jest": "25.1.4",
+    "@types/node": "13.9.2",
+    "husky": "^4.0.1",
+    "jest": "25.1.0",
+    "lint-staged": "^10.0.8",
+    "prettier": "1.19.1",
+    "rimraf": "3.0.0",
+    "ts-jest": "25.2.1",
+    "ts-node-dev": "1.0.0-pre.44",
+    "typescript": "3.8.3"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx,md,css,html,yml}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testMatch": [
+      "**/?(*.)(spec|test).(ts|tsx|js)",
+      "**/__tests__/*.(ts|tsx|js)",
+      "**/test/*.(ts|tsx|js)"
+    ]
+  }
+}

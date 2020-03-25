@@ -1,6 +1,8 @@
 FROM ubuntu:19.10
 
 ENV DEBIAN_FRONTEND=noninteractive
+ENV CC=clang
+ENV CXX=clang++
 
 RUN apt update && \
     apt install -y \

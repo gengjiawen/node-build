@@ -36,7 +36,7 @@ RUN apt-get install -y npm && \
       npm i -g n && \
       npm i -g yarn && \
       n latest && \
-      yarn global add node-cmake-generator node-gyp && \
+      yarn global add node-cmake-generator node-gyp @gengjiawen/node-dev && \
       npx envinfo
 
 CMD [ "fish" ]

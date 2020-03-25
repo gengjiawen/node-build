@@ -9,6 +9,7 @@ RUN apt update && \
         build-essential \
         git \
         curl \
+        wget \
         clang \
         clang-format \
         clang-tidy \

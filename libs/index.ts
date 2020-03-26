@@ -1,5 +1,6 @@
-import * as fs from 'fs'
+import * as fs from 'fs-extra'
 import * as path from 'path'
+import * as os from 'os'
 
 export function addCompileDB() {
   const configPath = path.join(process.cwd(), '.vscode/c_cpp_properties.json')
@@ -15,4 +16,12 @@ export function addCompileDB() {
 
   // I wish pretty json output is default :(
   fs.writeFileSync(configPath, JSON.stringify(json, null, 2))
+}
+
+export function syncLldbScritpt() {
+  const v8_files = path.join(__dirname, '..', 'v8-files')
+  fs.copySync(v8_files, os.homedir(), {
+    overwrite: false,
+    errorOnExist: true,
+  })
 }

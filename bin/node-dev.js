@@ -2,13 +2,21 @@
 
 const program = require('commander')
 
-const { addCompileDB } = require('../build')
+const { addCompileDB, syncLldbScritpt } = require('../build')
 
 program
   .version(require('../package.json').version)
-  .command('configcpp')
+  .command('addcc')
+  .description('add vscode compile commands to config')
   .action(() => {
     addCompileDB()
+  })
+
+program
+  .command('setuplldb')
+  .description('copy v8 lldb script to your homedir')
+  .action(() => {
+    syncLldbScritpt()
   })
 
 program.parse(process.argv)

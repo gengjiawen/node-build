@@ -25,3 +25,12 @@ export function syncLldbScritpt() {
     errorOnExist: true,
   })
 }
+
+export function setupVSCodeConfig() {
+  const v8_files = path.join(__dirname, '..', 'template', '.devcontainer')
+  const dest = path.join(process.cwd(), '.devcontainer')
+  fs.copySync(v8_files, dest, {
+    overwrite: false,
+    errorOnExist: true,
+  })
+}

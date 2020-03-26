@@ -2,7 +2,7 @@
 
 const program = require('commander')
 
-const { addCompileDB, syncLldbScritpt } = require('../build')
+const { addCompileDB, syncLldbScritpt, setupVSCodeConfig } = require('../build')
 
 program
   .version(require('../package.json').version)
@@ -17,6 +17,15 @@ program
   .description('copy v8 lldb script to your homedir')
   .action(() => {
     syncLldbScritpt()
+  })
+
+program
+  .command('init')
+  .description(
+    'setup VScode code Remote Container config, see https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers'
+  )
+  .action(() => {
+    setupVSCodeConfig()
   })
 
 program.parse(process.argv)

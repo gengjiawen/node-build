@@ -10,6 +10,7 @@ RUN apt update && \
         git \
         curl \
         wget \
+        rsync \
         clang \
         clang-format \
         clang-tidy \

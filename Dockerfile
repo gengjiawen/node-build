@@ -7,6 +7,7 @@ ENV CXX=clang++
 RUN apt update && \
     apt install -y \
         build-essential \
+        software-properties-common \ 
         git \
         curl \
         wget \
@@ -25,9 +26,10 @@ RUN apt update && \
         p7zip-full \
         doxygen \
         r-base \
-        fish \
         time \
         vim
+        
+RUN apt-add-repository ppa:fish-shell/release-3 && apt update && apt install fish -y
 
 #For clang-tidy and cmake
 RUN python3 -m pip install -U pip && pip3 install pyyaml && pip3 install cmake

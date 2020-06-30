@@ -29,6 +29,10 @@ RUN apt update && \
         time \
         vim
         
+# for wasi
+ENV PATH=/root/.cargo/bin:$PATH        
+RUN curl -sSf https://sh.rustup.rs | sh -s -- -y
+        
 RUN apt-add-repository ppa:fish-shell/release-3 && apt update && apt install fish -y
 
 #For clang-tidy and cmake

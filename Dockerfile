@@ -13,6 +13,7 @@ RUN apt update && \
         wget \
         rsync \
         clang \
+        clangd \
         clang-format \
         clang-tidy \
         clang-tools \
@@ -25,6 +26,7 @@ RUN apt update && \
         graphviz \
         p7zip-full \
         doxygen \
+        sudo \
         r-base \
         time \
         vim

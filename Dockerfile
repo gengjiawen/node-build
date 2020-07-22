@@ -12,6 +12,7 @@ RUN apt update && \
         curl \
         wget \
         rsync \
+        ccache \
         clang \
         clangd \
         clang-format \

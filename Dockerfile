@@ -43,8 +43,9 @@ RUN python3 -m pip install -U pip && pip3 install pyyaml && pip3 install cmake
 
 RUN apt-get install -y npm && \
       npm i -g n && \
-      npm i -g yarn && \
-      n latest && \
+      n latest
+
+RUN npm i -g yarn && \
       yarn global add node-cmake-generator node-gyp @gengjiawen/node-dev && \
       npx envinfo
 

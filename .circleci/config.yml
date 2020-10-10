@@ -24,11 +24,7 @@ jobs:
             docker login -u $DOCKER_USER -p $DOCKER_PASS
             docker push gengjiawen/node-build
             docker push gengjiawen/node-build:remote
-            docker push gengjiawen/node-build:excited-s
             docker push gengjiawen/node-build:source
-            docker run --rm --name build-node -v $PWD:/pwd -w /pwd gengjiawen/node-build:excited-s bash -c "cp ~/node/CMakeLists.txt /pwd"
-      - store_artifacts:
-          path: ~/project/CMakeLists.txt
 
 workflows:
   version: 2

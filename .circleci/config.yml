@@ -14,6 +14,7 @@ jobs:
             docker build -t gengjiawen/node-build:excited-s -f Dockerfile.source .
             docker build -t gengjiawen/node-build:source -f Dockerfile.source .
             docker build -t gengjiawen/node-build:remote -f Dockerfile.remote .
+            docker build -t gengjiawen/node-build:chrome -f Dockerfile.chrome .
       - run:
           name: Docker Info
           command: |
@@ -25,6 +26,7 @@ jobs:
             docker push gengjiawen/node-build
             docker push gengjiawen/node-build:remote
             docker push gengjiawen/node-build:source
+            docker push gengjiawen/node-build:chrome
 
 workflows:
   version: 2

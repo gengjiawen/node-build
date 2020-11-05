@@ -18,11 +18,11 @@ jobs:
       - run:
           name: Docker Info
           command: |
-            docker run --rm --name lo gengjiawen/node-build bash -c "npx envinfo"
+            docker run --rm --name lo gengjiawen/node-build bash -c "envinfo"
       - run:
           name: Push
           command: |
-            docker login -u $DOCKER_USER -p $DOCKER_PASS
+            docker login -u gengjiawen -p $DOCKER_PASS
             docker push gengjiawen/node-build
             docker push gengjiawen/node-build:remote
             docker push gengjiawen/node-build:source

@@ -46,8 +46,7 @@ RUN apt-get install -y npm && \
       n latest
 
 RUN npm i -g yarn && \
-      yarn global add node-cmake-generator node-gyp @gengjiawen/node-dev && \
-      npx envinfo
+      yarn global add node-cmake-generator node-gyp @gengjiawen/node-dev envinfo
 
 # setup lldb script for debug v8
 RUN node-dev setuplldb

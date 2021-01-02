@@ -35,7 +35,7 @@ RUN apt update && \
 # for wasi
 ENV PATH=/root/.cargo/bin:$PATH        
 RUN curl -sSf https://sh.rustup.rs | sh -s -- -y
-RUN cargo install --git https://github.com/rustwasm/wasm-pack && rustup target add wasm32-unknown-unknown
+RUN apt install libssl-dev -y && cargo install --git https://github.com/rustwasm/wasm-pack && rustup target add wasm32-unknown-unknown
         
 RUN apt-add-repository ppa:fish-shell/release-3 && apt update && apt install fish -y
 

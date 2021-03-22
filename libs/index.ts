@@ -34,3 +34,14 @@ export function setupVSCodeConfig() {
     errorOnExist: true,
   })
 }
+
+export function patchV8() {
+  // https://regex101.com/r/42r0wp/1
+  const regex = /set\(TARGET "v8"\)(.*?)unset\(TARGET\)/gms
+  const cmake_path = path.join(process.cwd(), 'CMakeLists.txt')
+  const node_cmake = fs.readFileSync(cmake_path).toString()
+
+  // The substituted value will be contained in the result variable
+  const result = node_cmake.replace(regex, ``)
+  fs.writeFileSync(cmake_path, result)
+}

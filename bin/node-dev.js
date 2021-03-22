@@ -2,7 +2,12 @@
 
 const program = require('commander')
 
-const { addCompileDB, syncLldbScritpt, setupVSCodeConfig } = require('../build')
+const {
+  addCompileDB,
+  syncLldbScritpt,
+  setupVSCodeConfig,
+  patchV8,
+} = require('../build')
 
 program
   .version(require('../package.json').version)
@@ -26,6 +31,13 @@ program
   )
   .action(() => {
     setupVSCodeConfig()
+  })
+
+program
+  .command('patch-v8')
+  .description('patch v8 in CMakeLists.txt')
+  .action(() => {
+    patchV8()
   })
 
 program.parse(process.argv)

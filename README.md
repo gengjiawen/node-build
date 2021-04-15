@@ -1,7 +1,9 @@
 # Build Docker image for Node.js
 [![CircleCI](https://circleci.com/gh/gengjiawen/node-build.svg?style=svg)](https://circleci.com/gh/gengjiawen/node-build)
 [![Docker Pulls](https://img.shields.io/docker/pulls/gengjiawen/node-build)](https://hub.docker.com/r/gengjiawen/node-build)
-![Docker Image Size (latest by date)](https://img.shields.io/docker/image-size/gengjiawen/node-build)
+![Docker Image Size (tag)](https://img.shields.io/docker/image-size/gengjiawen/node-build/latest?label=latest)
+![Docker Image Size (tag)](https://img.shields.io/docker/image-size/gengjiawen/node-build/source?label=source)
+![Docker Image Size (tag)](https://img.shields.io/docker/image-size/gengjiawen/node-build/chrome?label=chrome)
 
 ## Usage
 build

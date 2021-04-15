@@ -32,16 +32,31 @@ RUN apt update && \
         time \
         vim
         
+# add homebrew
+RUN useradd -l -u 33333 -G sudo -md /home/gitpod -s /bin/bash -p gitpod gitpod \
+    # passwordless sudo for users in the 'sudo' group
+    && sed -i.bkp -e 's/%sudo\s\+ALL=(ALL\(:ALL\)\?)\s\+ALL/%sudo ALL=NOPASSWD:ALL/g' /etc/sudoers
+
+USER gitpod
+
+RUN mkdir -p ~/.cache && /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+USER root
+
+ENV PATH=/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin/:$PATH
+ENV MANPATH="$MANPATH:/home/linuxbrew/.linuxbrew/share/man" \
+    INFOPATH="$INFOPATH:/home/linuxbrew/.linuxbrew/share/info" \
+    HOMEBREW_NO_AUTO_UPDATE=1
+
+RUN chown root /home/linuxbrew/.linuxbrew/bin/brew
+
+RUN brew install git fish sqlite3 curl cmake
+
 # for wasi
 ENV PATH=/root/.cargo/bin:$PATH        
 RUN curl -sSf https://sh.rustup.rs | sh -s -- -y
 RUN apt install libssl-dev -y && cargo install --git https://github.com/rustwasm/wasm-pack && rustup target add wasm32-unknown-unknown
         
-RUN apt-add-repository ppa:fish-shell/release-3 && apt update && apt install fish -y
-
-#For clang-tidy and cmake
-RUN python3 -m pip install -U pip && pip3 install pyyaml && pip3 install cmake
-
 RUN apt-get install -y npm && \
       npm i -g n && \
       n latest

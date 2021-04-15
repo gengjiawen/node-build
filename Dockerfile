@@ -52,18 +52,17 @@ RUN chown root /home/linuxbrew/.linuxbrew/bin/brew
 
 RUN brew install git fish sqlite3 curl cmake
 
+RUN brew install n && \
+      n latest
+
+RUN npm i -g yarn npm && \
+      yarn global add node-cmake-generator node-gyp @gengjiawen/node-dev envinfo
+
 # for wasi
 ENV PATH=/root/.cargo/bin:$PATH        
 RUN curl -sSf https://sh.rustup.rs | sh -s -- -y
 RUN apt install libssl-dev -y && cargo install --git https://github.com/rustwasm/wasm-pack && rustup target add wasm32-unknown-unknown
         
-RUN apt-get install -y npm && \
-      npm i -g n && \
-      n latest
-
-RUN npm i -g yarn && \
-      yarn global add node-cmake-generator node-gyp @gengjiawen/node-dev envinfo
-
 # setup lldb script for debug v8
 RUN node-dev setuplldb
 

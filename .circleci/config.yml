@@ -18,7 +18,7 @@ jobs:
       - run:
           name: Docker Info
           command: |
-            docker run --rm --name lo gengjiawen/node-build bash -c "envinfo"
+            docker run --rm --name lo gengjiawen/node-build:chrome bash -c "envinfo"
       - run:
           name: Push
           command: |

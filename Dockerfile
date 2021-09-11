@@ -31,6 +31,11 @@ RUN apt update && \
         r-base \
         time \
         vim
+
+ENV LC_ALL en_US.UTF-8
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US.UTF-8
+RUN apt-get install -y locales locales-all
         
 # add homebrew
 RUN useradd -l -u 33333 -G sudo -md /home/gitpod -s /bin/bash -p gitpod gitpod \

@@ -4,6 +4,10 @@ ENV DEBIAN_FRONTEND=noninteractive
 ENV CC=clang
 ENV CXX=clang++
 
+ENV LC_ALL en_US.UTF-8
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US.UTF-8
+
 RUN apt update && \
     apt install -y \
         build-essential \
@@ -21,6 +25,8 @@ RUN apt update && \
         lldb \
         gdb \
         ninja-build \
+        locales \
+        locales-all \
         python3 \
         python3-pip \
         python \
@@ -32,11 +38,6 @@ RUN apt update && \
         time \
         vim
 
-ENV LC_ALL en_US.UTF-8
-ENV LANG en_US.UTF-8
-ENV LANGUAGE en_US.UTF-8
-RUN apt-get install -y locales locales-all
-        
 # add homebrew
 RUN useradd -l -u 33333 -G sudo -md /home/gitpod -s /bin/bash -p gitpod gitpod \
     # passwordless sudo for users in the 'sudo' group
@@ -54,6 +55,8 @@ ENV MANPATH="$MANPATH:/home/linuxbrew/.linuxbrew/share/man" \
     HOMEBREW_NO_AUTO_UPDATE=1
 
 RUN chown root /home/linuxbrew/.linuxbrew/bin/brew
+
+# add homebrew end
 
 RUN brew install git fish sqlite3 curl cmake
 

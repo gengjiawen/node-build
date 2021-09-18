@@ -69,9 +69,15 @@ RUN npm i -g yarn npm && \
 # for wasi
 ENV PATH=/root/.cargo/bin:$PATH        
 RUN curl -sSf https://sh.rustup.rs | sh -s -- -y
-RUN apt install libssl-dev -y && cargo install --git https://github.com/rustwasm/wasm-pack && rustup target add wasm32-unknown-unknown
+RUN apt install libssl-dev -y && cargo install --git https://github.com/rustwasm/wasm-pack && rustup target add wasm32-unknown-unknown && cargo install cargo-workspaces
         
 # setup lldb script for debug v8
 RUN node-dev setuplldb
 
-CMD [ "fish" ]
+RUN apt-get update \
+  && apt-get install -y apt-transport-https \
+  && curl -sSL https://dl.google.com/linux/linux_signing_key.pub | apt-key add - \
+  && echo "deb [arch=amd64] https://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list \
+  && apt-get update && apt-get install -y google-chrome-unstable --no-install-recommends
+
+RUN apt install ffmpeg -y

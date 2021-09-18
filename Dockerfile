@@ -28,6 +28,7 @@ RUN apt update && \
         locales \
         locales-all \
         python3 \
+        libssl-dev \
         python3-pip \
         python \
         graphviz \
@@ -65,11 +66,6 @@ RUN brew install n && \
 
 RUN npm i -g yarn npm && \
       yarn global add node-cmake-generator node-gyp @gengjiawen/node-dev envinfo
-
-# for wasi
-ENV PATH=/root/.cargo/bin:$PATH        
-RUN curl -sSf https://sh.rustup.rs | sh -s -- -y
-RUN apt install libssl-dev -y && cargo install --git https://github.com/rustwasm/wasm-pack && rustup target add wasm32-unknown-unknown && cargo install cargo-workspaces
         
 # setup lldb script for debug v8
 RUN node-dev setuplldb
@@ -82,3 +78,10 @@ RUN apt-get update \
   && apt-get install -y fonts-noto fonts-noto-cjk 
 
 RUN apt install ffmpeg -y
+
+# for WASI
+# RUN brew install rustup 
+ENV PATH=/root/.cargo/bin:$PATH        
+RUN curl -sSf https://sh.rustup.rs | sh -s -- -y
+RUN cargo install --git https://github.com/rustwasm/wasm-pack && rustup target add wasm32-unknown-unknown && cargo install cargo-workspaces
+RUN envinfo

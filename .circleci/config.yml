@@ -9,6 +9,8 @@ jobs:
       - run:
           name: Build Docker Image
           command: |
+            # CircleCI bug, not bundled Node.js for some reason
+            nvm i 17
             npx envinfo
             docker build -t gengjiawen/node-build .
             docker build -t gengjiawen/node-build:source -f Dockerfile.source .

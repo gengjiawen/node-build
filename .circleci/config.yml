@@ -2,18 +2,14 @@ version: 2.1
 
 jobs:
   test:
-    machine: true
+    machine:
+      image: ubuntu-2004:202010-01
     working_directory: ~/project
     steps:
       - checkout
       - run:
           name: Build Docker Image
           command: |
-            # CircleCI bug, not bundled Node.js for some reason
-            # dirty fix
-            export NVM_DIR="/opt/circleci/.nvm"
-            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" 
-            nvm i 17
             npx envinfo
             docker build -t gengjiawen/node-build .
             docker build -t gengjiawen/node-build:source -f Dockerfile.source .

@@ -28,9 +28,9 @@ RUN apt update && \
         locales \
         locales-all \
         python3 \
-        libssl-dev \
         python3-pip \
-        python \
+        python-is-python3 \
+        libssl-dev \
         graphviz \
         p7zip-full \
         doxygen \

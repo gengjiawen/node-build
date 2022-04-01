@@ -77,7 +77,6 @@ RUN apt-get update \
   && apt-get update && apt-get install -y google-chrome-unstable --no-install-recommends \
   && apt-get install -y fonts-noto fonts-noto-cjk 
 
-RUN apt install firefox -y
 RUN apt install ffmpeg -y
 
 # for WASI

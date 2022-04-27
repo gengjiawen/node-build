@@ -64,7 +64,7 @@ RUN brew install git fish sqlite3 curl cmake
 RUN brew install n && \
       n latest
 
-RUN npm i -g yarn npm && \
+RUN npm i -g yarn pnpm && \
       yarn global add node-cmake-generator node-gyp @gengjiawen/node-dev envinfo
         
 # setup lldb script for debug v8

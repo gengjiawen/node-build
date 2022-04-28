@@ -48,21 +48,20 @@ USER gitpod
 
 RUN mkdir -p ~/.cache && /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-USER root
 
 ENV PATH=/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin/:$PATH
 ENV MANPATH="$MANPATH:/home/linuxbrew/.linuxbrew/share/man" \
     INFOPATH="$INFOPATH:/home/linuxbrew/.linuxbrew/share/info" \
     HOMEBREW_NO_AUTO_UPDATE=1
 
-RUN chown root /home/linuxbrew/.linuxbrew/bin/brew
-
 # add homebrew end
 
-RUN brew install git fish sqlite3 curl cmake
+RUN brew install git fish sqlite3 curl cmake n
 
-RUN brew install n && \
-      n latest
+USER root
+RUN n latest
+# not working anymore
+# RUN chown root /home/linuxbrew/.linuxbrew/bin/brew
 
 RUN npm i -g yarn pnpm && \
       yarn global add node-cmake-generator node-gyp @gengjiawen/node-dev envinfo

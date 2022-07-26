@@ -81,6 +81,6 @@ RUN apt install ffmpeg -y
 # for WASI
 # RUN brew install rustup 
 ENV PATH=/root/.cargo/bin:$PATH        
-RUN curl -sSf https://sh.rustup.rs | sh -s -- -y
+RUN curl -sSf https://sh.rustup.rs | sh -s -- -y --default-toolchain stable
 RUN cargo install --git https://github.com/rustwasm/wasm-pack && rustup target add wasm32-unknown-unknown && cargo install cargo-workspaces
 RUN envinfo

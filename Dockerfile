@@ -15,6 +15,8 @@ RUN apt update && \
         git \
         curl \
         wget \
+        ssh \
+        tar \
         rsync \
         ccache \
         clang \

@@ -33,6 +33,7 @@ RUN apt update && \
         python3-pip \
         python-is-python3 \
         libssl-dev \
+        iproute2 \
         graphviz \
         p7zip-full \
         doxygen \
@@ -65,7 +66,7 @@ RUN n latest
 # not working anymore
 # RUN chown root /home/linuxbrew/.linuxbrew/bin/brew
 
-RUN npm i -g yarn pnpm && \
+RUN npm i -g yarn pnpm fkill-cli && \
       yarn global add node-cmake-generator node-gyp @gengjiawen/node-dev envinfo
         
 # setup lldb script for debug v8

@@ -66,7 +66,7 @@ RUN n latest
 # not working anymore
 # RUN chown root /home/linuxbrew/.linuxbrew/bin/brew
 
-RUN npm i -g yarn pnpm fkill-cli && \
+RUN npm i -g yarn pnpm && \
       yarn global add node-cmake-generator node-gyp @gengjiawen/node-dev envinfo
         
 # setup lldb script for debug v8

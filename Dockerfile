@@ -62,6 +62,7 @@ ENV MANPATH="$MANPATH:/home/linuxbrew/.linuxbrew/share/man" \
 RUN brew install git fish sqlite3 curl cmake n
 
 USER root
+ENV PATH=/usr/lib/ccache:$PATH
 RUN n latest
 # not working anymore
 # RUN chown root /home/linuxbrew/.linuxbrew/bin/brew

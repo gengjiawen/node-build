@@ -34,6 +34,7 @@ RUN apt update && \
         python-is-python3 \
         libssl-dev \
         iproute2 \
+        psmisc \
         graphviz \
         p7zip-full \
         doxygen \

@@ -65,8 +65,9 @@ RUN brew install git fish sqlite3 curl cmake n
 USER root
 ENV PATH=/usr/lib/ccache:$PATH
 RUN n latest
-# not working anymore
-# RUN chown root /home/linuxbrew/.linuxbrew/bin/brew
+
+RUN echo 'export PATH=/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin/:$PATH' >> ~/.bashrc
+RUN echo 'export PATH=/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin/:$PATH' >> /home/gitpod/.bashrc
 
 RUN npm i -g yarn pnpm && \
       yarn global add node-cmake-generator node-gyp @gengjiawen/node-dev envinfo

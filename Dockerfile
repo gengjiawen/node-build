@@ -61,11 +61,11 @@ ENV MANPATH="$MANPATH:/home/linuxbrew/.linuxbrew/share/man" \
 # add homebrew end
 
 RUN brew install git fish sqlite3 curl cmake n
-RUN pip3 install scons
 
 USER root
 ENV PATH=/usr/lib/ccache:$PATH
 RUN n latest
+RUN pip3 install scons
 
 RUN echo 'export PATH=/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin/:$PATH' >> ~/.bashrc
 RUN echo 'export PATH=/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin/:$PATH' >> /home/gitpod/.bashrc

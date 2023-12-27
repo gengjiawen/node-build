@@ -70,7 +70,7 @@ RUN pip3 install scons
 RUN echo 'export PATH=/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin/:$PATH' >> ~/.bashrc
 RUN echo 'export PATH=/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin/:$PATH' >> /home/gitpod/.bashrc
 
-RUN npm i -g yarn pnpm && \
+RUN npm i -g yarn pnpm npm npm-check-updates && \
       yarn global add node-cmake-generator node-gyp @gengjiawen/node-dev envinfo
         
 # setup lldb script for debug v8

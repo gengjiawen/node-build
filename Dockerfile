@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM ubuntu:24.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV CC=clang
@@ -65,7 +65,7 @@ RUN brew install git fish sqlite3 curl cmake n
 USER root
 ENV PATH=/usr/lib/ccache:$PATH
 RUN n latest
-RUN pip3 install scons
+RUN pip3 install scons --break-system-packages
 
 RUN echo 'export PATH=/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin/:$PATH' >> ~/.bashrc
 RUN echo 'export PATH=/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin/:$PATH' >> /home/gitpod/.bashrc
@@ -80,7 +80,7 @@ RUN apt-get update \
   && apt-get install -y apt-transport-https \
   && curl -sSL https://dl.google.com/linux/linux_signing_key.pub | apt-key add - \
   && echo "deb [arch=amd64] https://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list \
-  && apt-get update && apt-get install -y google-chrome-unstable --no-install-recommends \
+  && apt-get update && apt-get install -y google-chrome-stable --no-install-recommends \
   && apt-get install -y fonts-noto fonts-noto-cjk 
 
 RUN apt install ffmpeg -y

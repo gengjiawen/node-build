@@ -1,4 +1,4 @@
-FROM ubuntu:25.04
+FROM ubuntu:24.10
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV CC=clang

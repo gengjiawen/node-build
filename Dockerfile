@@ -60,7 +60,7 @@ ENV MANPATH="$MANPATH:/home/linuxbrew/.linuxbrew/share/man" \
 
 # add homebrew end
 
-RUN brew install git fish sqlite3 curl cmake n
+RUN brew install git fish sqlite3 curl cmake n go
 
 USER root
 ENV PATH=/usr/lib/ccache:$PATH

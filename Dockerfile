@@ -78,8 +78,8 @@ RUN node-dev setuplldb
 
 RUN apt-get update \
   && apt-get install -y apt-transport-https \
-  && curl -sSL https://dl.google.com/linux/linux_signing_key.pub | apt-key add - \
-  && echo "deb [arch=amd64] https://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list \
+  && curl -fsSL https://dl.google.com/linux/linux_signing_key.pub | gpg --dearmor -o /usr/share/keyrings/google-chrome-keyring.gpg \
+  && echo "deb [arch=amd64 signed-by=/usr/share/keyrings/google-chrome-keyring.gpg] https://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list \
   && apt-get update && apt-get install -y google-chrome-stable --no-install-recommends \
   && apt-get install -y fonts-noto fonts-noto-cjk 
 

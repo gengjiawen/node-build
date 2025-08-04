@@ -60,17 +60,17 @@ ENV MANPATH="$MANPATH:/home/linuxbrew/.linuxbrew/share/man" \
 
 # add homebrew end
 
-RUN brew install git fish sqlite3 curl cmake n go
+RUN brew install git fish n sqlite3 curl cmake go
 
 USER root
 ENV PATH=/usr/lib/ccache:$PATH
 RUN n latest
 RUN pip3 install scons --break-system-packages
 
-RUN echo 'export PATH=/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin/:$PATH' >> ~/.bashrc
-RUN echo 'export PATH=/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin/:$PATH' >> /home/gitpod/.bashrc
+RUN echo 'export PATH=/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin/:/home/gitpod/.cargo/bin:$PATH' >> ~/.bashrc
+RUN echo 'export PATH=/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin/:/home/gitpod/.cargo/bin:$PATH' >> /home/gitpod/.bashrc
 
-RUN npm i -g yarn pnpm npm npm-check-updates && \
+RUN npm i -g n yarn pnpm npm npm-check-updates && \
       yarn global add node-cmake-generator node-gyp @gengjiawen/node-dev envinfo
         
 # setup lldb script for debug v8
@@ -86,8 +86,9 @@ RUN apt-get update \
 RUN apt install ffmpeg -y
 
 # for WASI
-# RUN brew install rustup 
-ENV PATH=/root/.cargo/bin:$PATH        
+USER gitpod
+ENV PATH=/home/gitpod/.cargo/bin:$PATH        
 RUN curl -sSf https://sh.rustup.rs | sh -s -- -y --default-toolchain stable
 RUN cargo install --git https://github.com/rustwasm/wasm-pack && rustup target add wasm32-unknown-unknown && cargo install cargo-workspaces
-RUN envinfo
+
+USER root

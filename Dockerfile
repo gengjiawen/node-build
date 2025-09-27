@@ -63,7 +63,7 @@ ENV MANPATH="$MANPATH:/home/linuxbrew/.linuxbrew/share/man" \
 RUN brew install git fish n sqlite3 curl cmake go
 
 USER root
-ENV PATH=/usr/lib/ccache:$PATH
+ENV PATH=/usr/lib/ccache:/home/gitpod/.cargo/bin:$PATH
 RUN n latest
 RUN pip3 install scons --break-system-packages
 

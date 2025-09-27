@@ -68,7 +68,7 @@ RUN n latest
 RUN pip3 install scons --break-system-packages
 
 ENV PNPM_HOME=/home/gitpod/.pnpm
-RUN npm i -g n yarn pnpm npm npm-check-updates && yarn global add node-cmake-generator node-gyp @gengjiawen/node-dev envinfo && pnpm setup     
+RUN npm i -g n yarn pnpm npm npm-check-updates && yarn global add node-cmake-generator node-gyp @gengjiawen/node-dev envinfo
 RUN chown -R "gitpod:gitpod" $PNPM_HOME
 
 # setup lldb script for debug v8

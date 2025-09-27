@@ -64,13 +64,13 @@ RUN brew install git fish n sqlite3 curl cmake go
 
 USER root
 ENV PATH=/usr/lib/ccache:$PATH
-ENV PNPM_HOME=/home/gitpod/.pnpm
 RUN n latest
 RUN pip3 install scons --break-system-packages
 
-RUN npm i -g n yarn pnpm npm npm-check-updates && \
-      yarn global add node-cmake-generator node-gyp @gengjiawen/node-dev envinfo
-        
+ENV PNPM_HOME=/home/gitpod/.pnpm
+RUN npm i -g n yarn pnpm npm npm-check-updates && yarn global add node-cmake-generator node-gyp @gengjiawen/node-dev envinfo && pnpm setup     
+RUN chown -R "gitpod:gitpod" $PNPM_HOME
+
 # setup lldb script for debug v8
 RUN node-dev setuplldb
 
@@ -93,5 +93,7 @@ RUN curl -sSf https://sh.rustup.rs | sh -s -- -y --default-toolchain stable
 
 RUN echo 'export PATH=/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin/:/home/gitpod/.pnpm:/usr/local/cargo/bin:$PATH' >> ~/.bashrc
 RUN echo 'export PATH=/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin/:/home/gitpod/.pnpm:/usr/local/cargo/bin:$PATH' >> /home/gitpod/.bashrc
+RUN bash -lc "echo -e 'export RUSTUP_HOME=/usr/local/rustup\nexport CARGO_HOME=/usr/local/cargo' >> /home/gitpod/.bashrc"
+
 
 RUN cargo install --git https://github.com/rustwasm/wasm-pack && rustup target add wasm32-unknown-unknown && cargo install cargo-workspaces

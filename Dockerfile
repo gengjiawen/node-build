@@ -11,7 +11,7 @@ ENV LANGUAGE en_US.UTF-8
 RUN apt update && \
     apt install -y \
         build-essential \
-        software-properties-common \ 
+        software-properties-common \
         git \
         curl \
         wget \
@@ -63,12 +63,10 @@ ENV MANPATH="$MANPATH:/home/linuxbrew/.linuxbrew/share/man" \
 RUN brew install git fish n sqlite3 curl cmake go
 
 USER root
-ENV PATH=/usr/lib/ccache:/home/gitpod/.cargo/bin:$PATH
+ENV PATH=/usr/lib/ccache:$PATH
+ENV PNPM_HOME=/home/gitpod/.pnpm
 RUN n latest
 RUN pip3 install scons --break-system-packages
-
-RUN echo 'export PATH=/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin/:/home/gitpod/.cargo/bin:$PATH' >> ~/.bashrc
-RUN echo 'export PATH=/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin/:/home/gitpod/.cargo/bin:$PATH' >> /home/gitpod/.bashrc
 
 RUN npm i -g n yarn pnpm npm npm-check-updates && \
       yarn global add node-cmake-generator node-gyp @gengjiawen/node-dev envinfo
@@ -86,9 +84,14 @@ RUN apt-get update \
 RUN apt install ffmpeg -y
 
 # for WASI
-USER gitpod
-ENV PATH=/home/gitpod/.cargo/bin:$PATH        
-RUN curl -sSf https://sh.rustup.rs | sh -s -- -y --default-toolchain stable
-RUN cargo install --git https://github.com/rustwasm/wasm-pack && rustup target add wasm32-unknown-unknown && cargo install cargo-workspaces
-
 USER root
+ENV RUSTUP_HOME=/usr/local/rustup
+ENV CARGO_HOME=/usr/local/cargo
+ENV PATH=$CARGO_HOME/bin:$PATH
+
+RUN curl -sSf https://sh.rustup.rs | sh -s -- -y --default-toolchain stable
+
+RUN echo 'export PATH=/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin/:/home/gitpod/.pnpm:/usr/local/cargo/bin:$PATH' >> ~/.bashrc
+RUN echo 'export PATH=/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin/:/home/gitpod/.pnpm:/usr/local/cargo/bin:$PATH' >> /home/gitpod/.bashrc
+
+RUN cargo install --git https://github.com/rustwasm/wasm-pack && rustup target add wasm32-unknown-unknown && cargo install cargo-workspaces

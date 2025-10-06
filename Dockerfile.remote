@@ -10,6 +10,6 @@ RUN ( \
   ) > /etc/ssh/sshd_config_test_clion \
   && mkdir -p /run/sshd
 
-RUN echo 'root:root' | chpasswd
+RUN echo 'root:8my4Vgz8rzAKzu69' | chpasswd
 
 CMD ["/usr/sbin/sshd", "-D", "-e", "-f", "/etc/ssh/sshd_config_test_clion"]

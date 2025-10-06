@@ -13,6 +13,7 @@ RUN apt update && \
         build-essential \
         software-properties-common \
         git \
+        git-lfs \
         curl \
         wget \
         ssh \
@@ -42,6 +43,9 @@ RUN apt update && \
         r-base \
         time \
         vim
+
+# Configure Git LFS at the system level before switching users
+RUN git lfs install --system
 
 # add homebrew
 RUN useradd -l -u 33333 -G sudo -md /home/gitpod -s /bin/bash -p gitpod gitpod \

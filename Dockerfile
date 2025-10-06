@@ -15,7 +15,9 @@ RUN apt update && \
         git \
         git-lfs \
         curl \
+        ca-certificates \
         wget \
+        gnupg \
         ssh \
         tar \
         rsync \
@@ -42,6 +44,7 @@ RUN apt update && \
         sudo \
         r-base \
         time \
+        ffmpeg \
         vim
 
 # Configure Git LFS at the system level before switching users
@@ -86,19 +89,19 @@ RUN apt-get update \
   && apt-get update && apt-get install -y google-chrome-stable --no-install-recommends \
   && apt-get install -y fonts-noto fonts-noto-cjk 
 
-RUN apt install ffmpeg -y
-
-# for WASI
-USER root
-ENV RUSTUP_HOME=/usr/local/rustup
-ENV CARGO_HOME=/usr/local/cargo
+USER gitpod
+ENV RUSTUP_HOME=/home/gitpod/.rustup
+ENV CARGO_HOME=/home/gitpod/.cargo
 ENV PATH=$CARGO_HOME/bin:$PATH
 
-RUN curl -sSf https://sh.rustup.rs | sh -s -- -y --default-toolchain stable
-
-RUN echo 'export PATH=/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin/:/home/gitpod/.pnpm:/usr/local/cargo/bin:$PATH' >> ~/.bashrc
-RUN echo 'export PATH=/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin/:/home/gitpod/.pnpm:/usr/local/cargo/bin:$PATH' >> /home/gitpod/.bashrc
-RUN bash -lc "echo -e 'export RUSTUP_HOME=/usr/local/rustup\nexport CARGO_HOME=/usr/local/cargo' >> /home/gitpod/.bashrc"
-
+RUN mkdir -p "$CARGO_HOME" "$RUSTUP_HOME" \
+  && curl -sSf https://sh.rustup.rs | sh -s -- -y --default-toolchain stable -c rust-analyzer -c rust-src -c rustfmt -c clippy
 
 RUN cargo install --git https://github.com/rustwasm/wasm-pack && rustup target add wasm32-unknown-unknown && cargo install cargo-workspaces
+
+USER root
+RUN echo 'export PATH=/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin/:/home/gitpod/.pnpm:/home/gitpod/.cargo/bin:$PATH' >> /home/gitpod/.bashrc
+RUN bash -lc "echo -e 'export RUSTUP_HOME=/home/gitpod/.rustup\nexport CARGO_HOME=/home/gitpod/.cargo' >> /home/gitpod/.bashrc"
+RUN echo 'export PATH=/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin/:/home/gitpod/.pnpm:/home/gitpod/.cargo/bin:$PATH' >> /root/.bashrc
+RUN bash -lc "echo -e 'export RUSTUP_HOME=/home/gitpod/.rustup\nexport CARGO_HOME=/home/gitpod/.cargo' >> /root/.bashrc"
+

@@ -97,7 +97,7 @@ ENV PATH=$CARGO_HOME/bin:$PATH
 RUN mkdir -p "$CARGO_HOME" "$RUSTUP_HOME" \
   && curl -sSf https://sh.rustup.rs | sh -s -- -y --default-toolchain stable -c rust-analyzer -c rust-src -c rustfmt -c clippy
 
-RUN cargo install --git https://github.com/rustwasm/wasm-pack && rustup target add wasm32-unknown-unknown && cargo install cargo-workspaces
+RUN cargo install --git https://github.com/rustwasm/wasm-pack && rustup target add wasm32-unknown-unknown && cargo install cargo-workspaces cargo-insta
 
 USER root
 RUN echo 'export PATH=/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin/:/home/gitpod/.pnpm:/home/gitpod/.cargo/bin:$PATH' >> /home/gitpod/.bashrc

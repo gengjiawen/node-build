@@ -39,7 +39,6 @@ RUN apt update && \
         iproute2 \
         psmisc \
         graphviz \
-        p7zip-full \
         doxygen \
         sudo \
         r-base \
@@ -87,7 +86,7 @@ RUN apt-get update \
   && curl -fsSL https://dl.google.com/linux/linux_signing_key.pub | gpg --dearmor -o /usr/share/keyrings/google-chrome-keyring.gpg \
   && echo "deb [arch=amd64 signed-by=/usr/share/keyrings/google-chrome-keyring.gpg] https://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list \
   && apt-get update && apt-get install -y google-chrome-stable --no-install-recommends \
-  && apt-get install -y fonts-noto fonts-noto-cjk 
+  && apt-get install -y fonts-noto fonts-noto-cjk
 
 USER gitpod
 ENV RUSTUP_HOME=/home/gitpod/.rustup

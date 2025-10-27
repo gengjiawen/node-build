@@ -70,23 +70,25 @@ RUN brew install git fish n sqlite3 curl cmake go sevenzip
 
 USER root
 ENV PATH=/usr/lib/ccache:$PATH
-RUN n latest
-RUN pip3 install scons --break-system-packages
+RUN n latest && npm i -g n yarn pnpm npm
 
-ENV PNPM_HOME=/home/gitpod/.pnpm
-ENV PATH="${PATH}:${PNPM_HOME}"
-RUN npm i -g n yarn pnpm npm && pnpm i -g node-cmake-generator node-gyp @gengjiawen/node-dev envinfo npm-check-updates @openai/codex @anthropic-ai/claude-code
-RUN chown -R "gitpod:gitpod" $PNPM_HOME
-
-# setup lldb script for debug v8
-RUN node-dev setuplldb
-
+# install google chrome
 RUN apt-get update \
   && apt-get install -y apt-transport-https \
   && curl -fsSL https://dl.google.com/linux/linux_signing_key.pub | gpg --dearmor -o /usr/share/keyrings/google-chrome-keyring.gpg \
   && echo "deb [arch=amd64 signed-by=/usr/share/keyrings/google-chrome-keyring.gpg] https://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list \
   && apt-get update && apt-get install -y google-chrome-stable --no-install-recommends \
   && apt-get install -y fonts-noto fonts-noto-cjk
+
+RUN pip3 install scons --break-system-packages
+
+USER gitpod
+ENV PNPM_HOME=/home/gitpod/.pnpm
+ENV PATH="${PATH}:${PNPM_HOME}"
+RUN pnpm i -g node-cmake-generator node-gyp @gengjiawen/node-dev envinfo npm-check-updates @openai/codex @anthropic-ai/claude-code
+
+# setup lldb script for debug v8
+RUN node-dev setuplldb
 
 USER gitpod
 ENV RUSTUP_HOME=/home/gitpod/.rustup
@@ -100,7 +102,6 @@ RUN cargo install --git https://github.com/rustwasm/wasm-pack && rustup target a
 
 USER root
 RUN echo 'export PATH=/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin/:/home/gitpod/.pnpm:/home/gitpod/.cargo/bin:$PATH' >> /home/gitpod/.bashrc
-RUN bash -lc "echo -e 'export RUSTUP_HOME=/home/gitpod/.rustup\nexport CARGO_HOME=/home/gitpod/.cargo' >> /home/gitpod/.bashrc"
+RUN bash -lc "echo -e 'export RUSTUP_HOME=/home/gitpod/.rustup\nexport CARGO_HOME=/home/gitpod/.cargo\nexport PNPM_HOME=/home/gitpod/.pnpm' >> /home/gitpod/.bashrc"
 RUN echo 'export PATH=/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin/:/home/gitpod/.pnpm:/home/gitpod/.cargo/bin:$PATH' >> /root/.bashrc
-RUN bash -lc "echo -e 'export RUSTUP_HOME=/home/gitpod/.rustup\nexport CARGO_HOME=/home/gitpod/.cargo' >> /root/.bashrc"
-
+RUN bash -lc "echo -e 'export RUSTUP_HOME=/home/gitpod/.rustup\nexport CARGO_HOME=/home/gitpod/.cargo\nexport PNPM_HOME=/home/gitpod/.pnpm' >> /root/.bashrc"

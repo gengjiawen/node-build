@@ -37,6 +37,8 @@ RUN apt update && \
         python-is-python3 \
         libssl-dev \
         iproute2 \
+        iputils-ping \
+        traceroute \
         psmisc \
         graphviz \
         doxygen \

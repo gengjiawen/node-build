@@ -46,7 +46,8 @@ RUN apt update && \
         r-base \
         time \
         ffmpeg \
-        vim
+        vim \
+        default-jdk
 
 # Configure Git LFS at the system level before switching users
 RUN git lfs install --system

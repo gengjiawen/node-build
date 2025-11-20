@@ -47,7 +47,9 @@ RUN apt update && \
         time \
         ffmpeg \
         vim \
-        default-jdk
+        default-jdk \
+        libopengl0 \
+        libxcb-cursor0
 
 # Configure Git LFS at the system level before switching users
 RUN git lfs install --system

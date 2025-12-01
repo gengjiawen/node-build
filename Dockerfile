@@ -39,6 +39,7 @@ RUN apt update && \
         iproute2 \
         iputils-ping \
         traceroute \
+        dnsutils \
         psmisc \
         graphviz \
         doxygen \

@@ -87,7 +87,7 @@ RUN apt-get update \
   && apt-get update && apt-get install -y google-chrome-stable --no-install-recommends \
   && apt-get install -y fonts-noto fonts-noto-cjk
 
-RUN pip3 install scons --break-system-packages
+RUN pip3 install scons setuptools --break-system-packages
 
 USER gitpod
 ENV PNPM_HOME=/home/gitpod/.pnpm

@@ -94,6 +94,8 @@ ENV PNPM_HOME=/home/gitpod/.pnpm
 ENV PATH="${PATH}:${PNPM_HOME}"
 RUN pnpm i -g node-cmake-generator node-gyp @gengjiawen/node-dev envinfo npm-check-updates @openai/codex @anthropic-ai/claude-code fkill-cli
 
+RUN pnpx @gengjiawen/os-init set-fish
+
 # setup lldb script for debug v8
 RUN node-dev setuplldb
 

@@ -1,8 +1,6 @@
 FROM ubuntu:25.04
 
 ENV DEBIAN_FRONTEND=noninteractive
-ENV CC=clang
-ENV CXX=clang++
 
 ENV LC_ALL en_US.UTF-8
 ENV LANG en_US.UTF-8

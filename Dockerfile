@@ -74,7 +74,7 @@ RUN brew install git fish n sqlite3 curl cmake go sevenzip ripgrep
 
 USER root
 ENV PATH=/usr/lib/ccache:$PATH
-RUN n latest && npm i -g n yarn pnpm npm
+RUN n latest && npm i -g n yarn pnpm@9 npm
 RUN ln -sfn "$(which 7zz)" /usr/local/bin/7z
 
 # install google chrome

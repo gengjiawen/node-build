@@ -74,7 +74,7 @@ RUN brew install git fish n sqlite3 curl cmake go sevenzip ripgrep
 
 USER root
 ENV PATH=/usr/lib/ccache:$PATH
-RUN n latest && npm i -g n yarn pnpm@9 npm
+RUN n latest && npm i -g n yarn pnpm npm
 RUN ln -sfn "$(which 7zz)" /usr/local/bin/7z
 
 # install google chrome
@@ -90,6 +90,7 @@ RUN pip3 install scons setuptools --break-system-packages
 USER gitpod
 ENV PNPM_HOME=/home/gitpod/.pnpm
 ENV PATH="${PATH}:${PNPM_HOME}"
+RUN pnpm config set -g enable-pre-post-scripts=true
 RUN pnpm i -g node-cmake-generator node-gyp @gengjiawen/node-dev envinfo npm-check-updates @openai/codex @anthropic-ai/claude-code fkill-cli
 
 RUN pnpx @gengjiawen/os-init set-fish

@@ -33,6 +33,7 @@ RUN apt update && \
         python3 \
         python3-pip \
         python-is-python3 \
+        pkg-config \
         libssl-dev \
         iproute2 \
         iputils-ping \

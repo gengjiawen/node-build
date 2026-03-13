@@ -21,6 +21,10 @@ jobs:
       - run:
           name: Push
           command: |
+            if [ "$CIRCLE_BRANCH" != "master" ]; then
+              echo "Skip image push on branch: $CIRCLE_BRANCH"
+              exit 0
+            fi
             docker login -u gengjiawen -p $DOCKER_PASS
             docker push gengjiawen/node-build
             docker push gengjiawen/node-build:remote

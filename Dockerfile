@@ -19,6 +19,7 @@ RUN apt update && \
         ssh \
         tar \
         rsync \
+        bubblewrap \
         ccache \
         clang \
         clangd \

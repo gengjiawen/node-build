@@ -42,6 +42,7 @@ RUN apt update && \
         dnsutils \
         psmisc \
         graphviz \
+        jq \
         doxygen \
         sudo \
         r-base \

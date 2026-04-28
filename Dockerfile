@@ -73,13 +73,14 @@ ENV MANPATH="$MANPATH:/home/linuxbrew/.linuxbrew/share/man" \
 
 # add homebrew end
 
-RUN brew install git fish n sqlite3 curl cmake go sevenzip ripgrep
+RUN brew install git fish n sqlite3 curl cmake go sevenzip ripgrep mihomo
 
 USER root
 ENV PATH=/usr/lib/ccache:$PATH
 # Install fkill via system npm so every user can access it from /usr/local/bin.
 RUN n lts && npm i -g n yarn pnpm npm fkill-cli
-RUN ln -sfn "$(which 7zz)" /usr/local/bin/7z
+RUN ln -sfn "$(which 7zz)" /usr/local/bin/7z \
+    && ln -sfn /home/linuxbrew/.linuxbrew/bin/mihomo /usr/local/bin/mihomo
 
 # install google chrome
 RUN apt-get update \

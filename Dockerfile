@@ -94,7 +94,7 @@ RUN pip3 install scons setuptools --break-system-packages
 
 USER gitpod
 ENV PNPM_HOME=/home/gitpod/.pnpm
-ENV PATH="${PATH}:${PNPM_HOME}"
+ENV PATH="${PATH}:${PNPM_HOME}:${PNPM_HOME}/bin"
 RUN pnpm config set -g enable-pre-post-scripts=true \
     && pnpm config set -g update-notifier false
 RUN pnpm i -g node-cmake-generator node-gyp @gengjiawen/node-dev envinfo npm-check-updates @openai/codex @anthropic-ai/claude-code
@@ -115,7 +115,7 @@ RUN mkdir -p "$CARGO_HOME" "$RUSTUP_HOME" \
 RUN cargo install --git https://github.com/rustwasm/wasm-pack && rustup target add wasm32-unknown-unknown && cargo install cargo-workspaces cargo-insta
 
 USER root
-RUN echo 'export PATH=/home/gitpod/.jsvu/bin:/home/gitpod/.local/bin:/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin/:/home/gitpod/.pnpm:/home/gitpod/.cargo/bin:/home/gitpod/.yarn/bin:$PATH' >> /home/gitpod/.bashrc
+RUN echo 'export PATH=/home/gitpod/.jsvu/bin:/home/gitpod/.local/bin:/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin/:/home/gitpod/.pnpm:/home/gitpod/.pnpm/bin:/home/gitpod/.cargo/bin:/home/gitpod/.yarn/bin:$PATH' >> /home/gitpod/.bashrc
 RUN bash -lc "echo -e 'export RUSTUP_HOME=/home/gitpod/.rustup\nexport CARGO_HOME=/home/gitpod/.cargo\nexport PNPM_HOME=/home/gitpod/.pnpm' >> /home/gitpod/.bashrc"
-RUN echo 'export PATH=/home/gitpod/.jsvu/bin:/home/gitpod/.local/bin:/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin/:/home/gitpod/.pnpm:/home/gitpod/.cargo/bin:/home/gitpod/.yarn/bin:$PATH' >> /root/.bashrc
+RUN echo 'export PATH=/home/gitpod/.jsvu/bin:/home/gitpod/.local/bin:/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin/:/home/gitpod/.pnpm:/home/gitpod/.pnpm/bin:/home/gitpod/.cargo/bin:/home/gitpod/.yarn/bin:$PATH' >> /root/.bashrc
 RUN bash -lc "echo -e 'export RUSTUP_HOME=/home/gitpod/.rustup\nexport CARGO_HOME=/home/gitpod/.cargo\nexport PNPM_HOME=/home/gitpod/.pnpm' >> /root/.bashrc"

@@ -95,7 +95,8 @@ RUN pip3 install scons setuptools --break-system-packages
 USER gitpod
 ENV PNPM_HOME=/home/gitpod/.pnpm
 ENV PATH="${PATH}:${PNPM_HOME}"
-RUN pnpm config set -g enable-pre-post-scripts=true
+RUN pnpm config set -g enable-pre-post-scripts=true \
+    && pnpm config set -g update-notifier false
 RUN pnpm i -g node-cmake-generator node-gyp @gengjiawen/node-dev envinfo npm-check-updates @openai/codex @anthropic-ai/claude-code
 
 RUN pnpx @gengjiawen/os-init set-fish

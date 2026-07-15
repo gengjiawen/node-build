@@ -78,7 +78,7 @@ RUN brew install git fish n sqlite3 curl cmake go sevenzip ripgrep mihomo
 USER root
 ENV PATH=/usr/lib/ccache:$PATH
 # Install fkill via system npm so every user can access it from /usr/local/bin.
-RUN n lts && npm i -g n yarn pnpm npm fkill-cli
+RUN n lts && npm i -g n yarn pnpm npm@11 fkill-cli
 RUN ln -sfn "$(which 7zz)" /usr/local/bin/7z \
     && ln -sfn /home/linuxbrew/.linuxbrew/bin/mihomo /usr/local/bin/mihomo
 
@@ -115,6 +115,6 @@ RUN cargo install --git https://github.com/rustwasm/wasm-pack && rustup target a
 
 USER root
 RUN echo 'export PATH=/home/gitpod/.jsvu/bin:/home/gitpod/.local/bin:/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin/:/home/gitpod/.pnpm:/home/gitpod/.pnpm/bin:/home/gitpod/.cargo/bin:/home/gitpod/.yarn/bin:$PATH' >> /home/gitpod/.bashrc
-RUN bash -lc "echo -e 'export RUSTUP_HOME=/home/gitpod/.rustup\nexport CARGO_HOME=/home/gitpod/.cargo\nexport PNPM_HOME=/home/gitpod/.pnpm' >> /home/gitpod/.bashrc"
+RUN bash -lc "echo -e 'export RUSTUP_HOME=/home/gitpod/.rustup\nexport CARGO_HOME=/home/gitpod/.cargo\nexport PNPM_HOME=/home/gitpod/.pnpm\nexport pnpm_config_minimum_release_age=0' >> /home/gitpod/.bashrc"
 RUN echo 'export PATH=/home/gitpod/.jsvu/bin:/home/gitpod/.local/bin:/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin/:/home/gitpod/.pnpm:/home/gitpod/.pnpm/bin:/home/gitpod/.cargo/bin:/home/gitpod/.yarn/bin:$PATH' >> /root/.bashrc
-RUN bash -lc "echo -e 'export RUSTUP_HOME=/home/gitpod/.rustup\nexport CARGO_HOME=/home/gitpod/.cargo\nexport PNPM_HOME=/home/gitpod/.pnpm' >> /root/.bashrc"
+RUN bash -lc "echo -e 'export RUSTUP_HOME=/home/gitpod/.rustup\nexport CARGO_HOME=/home/gitpod/.cargo\nexport PNPM_HOME=/home/gitpod/.pnpm\nexport pnpm_config_minimum_release_age=0' >> /root/.bashrc"

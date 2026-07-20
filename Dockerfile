@@ -96,7 +96,7 @@ USER gitpod
 ENV PNPM_HOME=/home/gitpod/.pnpm
 ENV PATH="${PATH}:${PNPM_HOME}:${PNPM_HOME}/bin"
 RUN pnpm config set -g update-notifier false
-RUN pnpm i -g node-cmake-generator node-gyp @gengjiawen/node-dev envinfo npm-check-updates @openai/codex @anthropic-ai/claude-code
+RUN pnpm i -g node-cmake-generator node-gyp @gengjiawen/node-dev envinfo npm-check-updates @openai/codex @anthropic-ai/claude-code @getpaseo/cli
 
 RUN pnpx @gengjiawen/os-init set-fish
 

@@ -28,6 +28,7 @@ RUN apt update && \
         clang-tools \
         lldb \
         gdb \
+        strace \
         ninja-build \
         locales \
         locales-all \
@@ -49,6 +50,7 @@ RUN apt update && \
         time \
         ffmpeg \
         vim \
+        tmux \
         default-jdk \
         libopengl0 \
         libxcb-cursor0
@@ -73,7 +75,7 @@ ENV MANPATH="$MANPATH:/home/linuxbrew/.linuxbrew/share/man" \
 
 # add homebrew end
 
-RUN brew install git fish n sqlite3 curl cmake go sevenzip ripgrep mihomo
+RUN brew install git gh fish n sqlite3 curl cmake go sevenzip ripgrep mihomo
 
 USER root
 ENV PATH=/usr/lib/ccache:$PATH

@@ -44,9 +44,7 @@ RUN apt update && \
         psmisc \
         graphviz \
         jq \
-        doxygen \
         sudo \
-        r-base \
         time \
         ffmpeg \
         vim \

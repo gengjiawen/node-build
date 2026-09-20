@@ -73,7 +73,7 @@ ENV MANPATH="$MANPATH:/home/linuxbrew/.linuxbrew/share/man" \
 
 # add homebrew end
 
-RUN brew install git gh fish n sqlite3 curl cmake go sevenzip ripgrep mihomo
+RUN brew install git gh glab fish n sqlite3 curl cmake go sevenzip ripgrep mihomo
 
 USER root
 ENV PATH=/usr/lib/ccache:$PATH

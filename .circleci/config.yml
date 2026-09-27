@@ -13,11 +13,10 @@ jobs:
             npx envinfo
             docker build -t gengjiawen/node-build .
             docker build -t gengjiawen/node-build:source -f Dockerfile.source .
-            docker build -t gengjiawen/node-build:remote -f Dockerfile.remote .
       - run:
           name: Docker Info
           command: |
-            docker run --rm --name lo gengjiawen/node-build:remote bash -c "envinfo"
+            docker run --rm --name lo gengjiawen/node-build bash -c "envinfo"
       - run:
           name: Push
           command: |
@@ -27,7 +26,6 @@ jobs:
             fi
             docker login -u gengjiawen -p $DOCKER_PASS
             docker push gengjiawen/node-build
-            docker push gengjiawen/node-build:remote
             docker push gengjiawen/node-build:source
 
 workflows:

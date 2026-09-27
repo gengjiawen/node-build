@@ -5,6 +5,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 ENV LC_ALL en_US.UTF-8
 ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US.UTF-8
+ENV TZ=Asia/Singapore
 
 RUN apt update && \
     apt install -y \
@@ -52,6 +53,9 @@ RUN apt update && \
         default-jdk \
         libopengl0 \
         libxcb-cursor0
+
+# tzdata defaults /etc/localtime to UTC; set it too so SSH sessions, which don't inherit ENV, match TZ
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 # Configure Git LFS at the system level before switching users
 RUN git lfs install --system

@@ -26,6 +26,7 @@ RUN apt update && \
         clang-format \
         clang-tidy \
         clang-tools \
+        llvm \
         lldb \
         gdb \
         strace \

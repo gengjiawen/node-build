@@ -3,8 +3,8 @@
   "version": "0.0.3",
   "description": "yahaha",
   "repository": {
-    "url": "/node-debug",
-    "type": "git"
+    "type": "git",
+    "url": "https://github.com/gengjiawen/node-build"
   },
   "author": "gengjiawen <technicalcute@gmail.com> (github.com/gengjiawen)",
   "scripts": {
@@ -19,6 +19,12 @@
   "bin": {
     "node-dev": "bin/node-dev.js"
   },
+  "files": [
+    "bin",
+    "build",
+    "template",
+    "v8-files"
+  ],
   "dependencies": {
     "commander": "9.1.0",
     "fs-extra": "10.0.1"

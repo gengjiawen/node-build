@@ -31,6 +31,7 @@ RUN apt update && \
         lldb \
         gdb \
         strace \
+        file \
         ninja-build \
         locales \
         locales-all \

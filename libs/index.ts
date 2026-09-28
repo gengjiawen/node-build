@@ -1,6 +1,7 @@
 import * as fs from 'fs-extra'
 import * as path from 'path'
 import * as os from 'os'
+import { execFileSync } from 'child_process'
 
 export function addCompileDB() {
   const configPath = path.join(process.cwd(), '.vscode/c_cpp_properties.json')
@@ -44,4 +45,36 @@ export function patchV8() {
   // The substituted value will be contained in the result variable
   const result = node_cmake.replace(regex, ``)
   fs.writeFileSync(cmake_path, result)
+}
+
+export function generateCMake() {
+  const nodeDir = process.cwd()
+  if (!fs.existsSync(path.join(nodeDir, 'tools', 'gyp_node.py'))) {
+    throw new Error(
+      `${nodeDir} is not a Node.js source root (tools/gyp_node.py not found)`
+    )
+  }
+
+  execFileSync('./configure', { stdio: 'inherit' })
+
+  // Same gyp flags ./configure uses, but with the cmake generator
+  const python = execFileSync('python3', [
+    '-c',
+    'import sys; print(sys.executable)',
+  ])
+    .toString()
+    .trim()
+  execFileSync(
+    python,
+    [
+      'tools/gyp_node.py',
+      '--no-parallel',
+      '-Dconfiguring_node=1',
+      '-Dbuild_type=Release',
+      `-Dpython=${python}`,
+      '-f',
+      'cmake',
+    ],
+    { stdio: 'inherit' }
+  )
 }

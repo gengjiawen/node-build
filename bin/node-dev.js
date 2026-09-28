@@ -7,6 +7,7 @@ const {
   syncLldbScritpt,
   setupVSCodeConfig,
   patchV8,
+  generateCMake,
 } = require('../build')
 
 program
@@ -38,6 +39,15 @@ program
   .description('patch v8 in CMakeLists.txt')
   .action(() => {
     patchV8()
+  })
+
+program
+  .command('cmake')
+  .description(
+    'run ./configure and generate out/{Debug,Release}/CMakeLists.txt in Node.js source root'
+  )
+  .action(() => {
+    generateCMake()
   })
 
 program.parse(process.argv)

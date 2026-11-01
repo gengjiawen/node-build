@@ -96,6 +96,9 @@ RUN apt-get update \
   && apt-get update && apt-get install -y google-chrome-stable --no-install-recommends \
   && apt-get install -y fonts-noto fonts-noto-cjk
 
+# playwright system deps for chromium/chrome only (also pulls xvfb + test fonts)
+RUN npx -y playwright@latest install-deps chromium
+
 RUN pip3 install scons setuptools --break-system-packages
 
 USER gitpod
